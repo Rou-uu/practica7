@@ -22,6 +22,7 @@ public class ValorIndexable<T>
         // Aquí va su código.
         this.elemento = elemento;
         this.valor = valor;
+        indice = -1;
     }
 
     /**
@@ -108,5 +109,6 @@ public class ValorIndexable<T>
      */
     @Override public String toString() {
         // Aquí va su código.
+        return String.format("%s:%2.9f", elemento.toString(), valor);
     }
 }

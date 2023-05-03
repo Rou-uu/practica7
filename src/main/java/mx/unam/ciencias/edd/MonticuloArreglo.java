@@ -60,25 +60,20 @@ public class MonticuloArreglo<T extends ComparableIndexable<T>>
             throw new IllegalStateException();
 
         T min = null;
-        for (int i = 0; i < elementos; i++) {
-            if (min == null) {
-                min = arreglo[i];
-            }
+        for (T om : arreglo) {
+            if (min == null && om != null)
+                min  = om;
 
-            else {
-                if (arreglo[i] != null) {
-                    if (min.compareTo(arreglo[i]) < 0) {
-                        min = arreglo[i];
-                    }
-                }
-            }
+            else if (om != null && om.compareTo(min) < 0)
+                min = om;
         }
         
-        T temp = arreglo[min];    
-        arreglo[min] = null;
+        int index = min.getIndice();
+        min.setIndice(-1);
+        arreglo[index] = null;
         elementos--;
 
-        return temp;
+        return min;
     }
 
     /**
