@@ -20,6 +20,8 @@ public class ValorIndexable<T>
      */
     public ValorIndexable(T elemento, double valor) {
         // Aquí va su código.
+        this.elemento = elemento;
+        this.valor = valor;
     }
 
     /**
@@ -28,6 +30,7 @@ public class ValorIndexable<T>
      */
     public T getElemento() {
         // Aquí va su código.
+        return elemento;
     }
 
     /**
@@ -39,6 +42,13 @@ public class ValorIndexable<T>
      */
     @Override public int compareTo(ValorIndexable<T> valorIndexable) {
         // Aquí va su código.
+        if (valor < valorIndexable.valor)
+            return -1;
+
+        else if (valor > valorIndexable.valor)
+            return 1;
+
+        return 0;
     }
 
     /**
@@ -47,6 +57,7 @@ public class ValorIndexable<T>
      */
     @Override public void setIndice(int indice) {
         // Aquí va su código.
+        this.indice = indice;
     }
 
     /**
@@ -55,6 +66,7 @@ public class ValorIndexable<T>
      */
     @Override public int getIndice() {
         // Aquí va su código.
+        return indice;
     }
 
     /**
@@ -63,6 +75,7 @@ public class ValorIndexable<T>
      */
     public void setValor(double valor) {
         // Aquí va su código.
+        this.valor = valor;
     }
 
     /**
@@ -71,6 +84,7 @@ public class ValorIndexable<T>
      */
     public double getValor() {
         // Aquí va su código.
+        return valor;
     }
 
     /**
@@ -85,6 +99,7 @@ public class ValorIndexable<T>
         @SuppressWarnings("unchecked") ValorIndexable<T> valorIndexable =
             (ValorIndexable<T>)objeto;
         // Aquí va su código.
+            return elemento.equals(valorIndexable.elemento) && valor == valorIndexable.valor && indice == valorIndexable.indice;
     }
 
     /**

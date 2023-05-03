@@ -18,11 +18,16 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
         /* Nos dice si hay un siguiente elemento. */
         @Override public boolean hasNext() {
             // Aquí va su código.
+            return indice < elementos;
         }
 
         /* Regresa el siguiente elemento. */
         @Override public T next() {
             // Aquí va su código.
+            if (!hasNext())
+                throw new NoSuchElementException();
+
+            return arbol[indice++];
         }
     }
 
@@ -38,21 +43,25 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
         /* Crea un nuevo comparable indexable. */
         public Adaptador(T elemento) {
             // Aquí va su código.
+            this.elemento = elemento;
         }
 
         /* Regresa el índice. */
         @Override public int getIndice() {
             // Aquí va su código.
+            return indice;
         }
 
         /* Define el índice. */
         @Override public void setIndice(int indice) {
             // Aquí va su código.
+            this.indice = indice;
         }
 
         /* Compara un adaptador con otro. */
         @Override public int compareTo(Adaptador<T> adaptador) {
             // Aquí va su código.
+            return elemento.compareTo(adaptador.elemento);
         }
     }
 
@@ -75,6 +84,8 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
      */
     public MonticuloMinimo() {
         // Aquí va su código.
+        arbol = nuevoArreglo(100);
+        elementos = 0;
     }
 
     /**
@@ -100,6 +111,16 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
      */
     public MonticuloMinimo(Iterable<T> iterable, int n) {
         // Aquí va su código.
+        arbol = nuevoArreglo(n);
+        this.elementos = n;
+
+        int i = 0;
+
+        for (T om : iterable) {
+            arreglo [i] = om;
+            om.setIndice(i++);
+        }
+        
     }
 
     /**
@@ -117,6 +138,10 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
      */
     @Override public T elimina() {
         // Aquí va su código.
+        if (elementos == 0)
+            throw new IllegalStateException();
+
+        
     }
 
     /**
@@ -144,6 +169,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
      */
     @Override public boolean esVacia() {
         // Aquí va su código.
+        return elementos == 0;
     }
 
     /**
@@ -151,6 +177,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
      */
     @Override public void limpia() {
         // Aquí va su código.
+        elementos = 0;
     }
 
    /**
@@ -167,6 +194,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
      */
     @Override public int getElementos() {
         // Aquí va su código.
+        return elementos;
     }
 
     /**
@@ -178,6 +206,10 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
      */
     @Override public T get(int i) {
         // Aquí va su código.
+        if (i < 0 || i >= elementos)
+            throw new NoSuchElementException();
+
+        return arbol[i];
     }
 
     /**
